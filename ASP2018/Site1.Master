@@ -1,0 +1,71 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="ASP2018.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+        }
+        .auto-style2 {
+            height: 59px;
+        }
+        .auto-style3 {
+            height: 481px;
+            width: 632px;
+        }
+        .auto-style4 {
+            height: 50px;
+            width: 632px;
+        }
+        .auto-style6 {
+            height: 481px;
+            width: 126px;
+        }
+        .auto-style7 {
+            width: 126px;
+        }
+    </style>
+</head>
+<body style="width:100%">
+    <form id="form1" runat="server" style="margin:0 auto">
+        <div>
+            <table class="auto-style1">
+                <tr>
+                    <td style="border-style: none" class="auto-style7"></td>
+                    <td class="auto-style4" style="border-style: none">
+                        <asp:Label ID="Label1" runat="server" ForeColor="Green" EnableViewState="False"></asp:Label>
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style6" style="border-style: solid">
+                        <asp:Menu ID="Menu1" runat="server">
+                            <Items>
+                                <asp:MenuItem NavigateUrl="~/Acceuil.aspx" Text="Acceuil" Value="Acceuil"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/Connexion.aspx" Text="Connexion" Value="Connexion"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/Inscription/Inscription.aspx" Text="Inscription" Value="Inscription"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/Emprunts.aspx" Text="Emprunts" Value="Emprunts"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/EmpruntMontantTotal.aspx" Text="Montant Total d'un Emprunt" Value="Montant Total d'un Emprunt"></asp:MenuItem>
+                            </Items>
+                        </asp:Menu>
+                    </td>
+                    <td class="auto-style3" style="border-style: solid">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style2" colspan="2" style="border-style: solid"></td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>

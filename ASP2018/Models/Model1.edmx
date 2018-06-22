@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="db2018Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categorie">
+          <Key>
+            <PropertyRef Name="idCat" />
+          </Key>
+          <Property Name="idCat" Type="int" Nullable="false" />
+          <Property Name="libelle" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="idClt" />
+          </Key>
+          <Property Name="idClt" Type="int" Nullable="false" />
+          <Property Name="nomClient" Type="nvarchar" MaxLength="50" />
+          <Property Name="prenomClient" Type="nvarchar" MaxLength="50" />
+          <Property Name="emailClient" Type="nvarchar" MaxLength="50" />
+          <Property Name="mdpClient" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Degats">
+          <Key>
+            <PropertyRef Name="idD" />
+          </Key>
+          <Property Name="idD" Type="int" Nullable="false" />
+          <Property Name="idEmp" Type="int" />
+          <Property Name="description" Type="nvarchar" MaxLength="255" />
+          <Property Name="coutEstime" Type="money" />
+        </EntityType>
+        <EntityType Name="Emprunter">
+          <Key>
+            <PropertyRef Name="idEmp" />
+          </Key>
+          <Property Name="idEmp" Type="int" Nullable="false" />
+          <Property Name="idClt" Type="int" />
+          <Property Name="idmat" Type="int" />
+          <Property Name="dateEmprunt" Type="date" />
+          <Property Name="dateRetour" Type="date" />
+          <Property Name="dureeEmprunt" Type="int" />
+          <Property Name="montantTotal" Type="money" />
+        </EntityType>
+        <EntityType Name="Materiel">
+          <Key>
+            <PropertyRef Name="idMat" />
+          </Key>
+          <Property Name="idMat" Type="int" Nullable="false" />
+          <Property Name="libelle" Type="nvarchar" MaxLength="50" />
+          <Property Name="prixEmprunt" Type="money" />
+          <Property Name="idCat" Type="int" />
+        </EntityType>
+        <Association Name="FK__Degats__idEmp__1B0907CE">
+          <End Role="Emprunter" Type="Self.Emprunter" Multiplicity="0..1" />
+          <End Role="Degats" Type="Self.Degats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emprunter">
+              <PropertyRef Name="idEmp" />
+            </Principal>
+            <Dependent Role="Degats">
+              <PropertyRef Name="idEmp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Emprunter__idClt__173876EA">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Emprunter" Type="Self.Emprunter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="idClt" />
+            </Principal>
+            <Dependent Role="Emprunter">
+              <PropertyRef Name="idClt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Emprunter__idmat__182C9B23">
+          <End Role="Materiel" Type="Self.Materiel" Multiplicity="0..1" />
+          <End Role="Emprunter" Type="Self.Emprunter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materiel">
+              <PropertyRef Name="idMat" />
+            </Principal>
+            <Dependent Role="Emprunter">
+              <PropertyRef Name="idmat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Materiel__idCat__1273C1CD">
+          <End Role="Categorie" Type="Self.Categorie" Multiplicity="0..1" />
+          <End Role="Materiel" Type="Self.Materiel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorie">
+              <PropertyRef Name="idCat" />
+            </Principal>
+            <Dependent Role="Materiel">
+              <PropertyRef Name="idCat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db2018ModelStoreContainer">
+          <EntitySet Name="Categorie" EntityType="Self.Categorie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Degats" EntityType="Self.Degats" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Emprunter" EntityType="Self.Emprunter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Materiel" EntityType="Self.Materiel" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Degats__idEmp__1B0907CE" Association="Self.FK__Degats__idEmp__1B0907CE">
+            <End Role="Emprunter" EntitySet="Emprunter" />
+            <End Role="Degats" EntitySet="Degats" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Emprunter__idClt__173876EA" Association="Self.FK__Emprunter__idClt__173876EA">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Emprunter" EntitySet="Emprunter" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Emprunter__idmat__182C9B23" Association="Self.FK__Emprunter__idmat__182C9B23">
+            <End Role="Materiel" EntitySet="Materiel" />
+            <End Role="Emprunter" EntitySet="Emprunter" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Materiel__idCat__1273C1CD" Association="Self.FK__Materiel__idCat__1273C1CD">
+            <End Role="Categorie" EntitySet="Categorie" />
+            <End Role="Materiel" EntitySet="Materiel" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db2018Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Categorie">
+          <Key>
+            <PropertyRef Name="idCat" />
+          </Key>
+          <Property Name="idCat" Type="Int32" Nullable="false" />
+          <Property Name="libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Materiels" Relationship="Self.FK__Materiel__idCat__1273C1CD" FromRole="Categorie" ToRole="Materiel" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="idClt" />
+          </Key>
+          <Property Name="idClt" Type="Int32" Nullable="false" />
+          <Property Name="nomClient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="prenomClient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="emailClient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mdpClient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Emprunters" Relationship="Self.FK__Emprunter__idClt__173876EA" FromRole="Client" ToRole="Emprunter" />
+        </EntityType>
+        <EntityType Name="Degat">
+          <Key>
+            <PropertyRef Name="idD" />
+          </Key>
+          <Property Name="idD" Type="Int32" Nullable="false" />
+          <Property Name="idEmp" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="coutEstime" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Emprunter" Relationship="Self.FK__Degats__idEmp__1B0907CE" FromRole="Degats" ToRole="Emprunter" />
+        </EntityType>
+        <EntityType Name="Emprunter">
+          <Key>
+            <PropertyRef Name="idEmp" />
+          </Key>
+          <Property Name="idEmp" Type="Int32" Nullable="false" />
+          <Property Name="idClt" Type="Int32" />
+          <Property Name="idmat" Type="Int32" />
+          <Property Name="dateEmprunt" Type="DateTime" Precision="0" />
+          <Property Name="dateRetour" Type="DateTime" Precision="0" />
+          <Property Name="dureeEmprunt" Type="Int32" />
+          <Property Name="montantTotal" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__Emprunter__idClt__173876EA" FromRole="Emprunter" ToRole="Client" />
+          <NavigationProperty Name="Degats" Relationship="Self.FK__Degats__idEmp__1B0907CE" FromRole="Emprunter" ToRole="Degats" />
+          <NavigationProperty Name="Materiel" Relationship="Self.FK__Emprunter__idmat__182C9B23" FromRole="Emprunter" ToRole="Materiel" />
+        </EntityType>
+        <EntityType Name="Materiel">
+          <Key>
+            <PropertyRef Name="idMat" />
+          </Key>
+          <Property Name="idMat" Type="Int32" Nullable="false" />
+          <Property Name="libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="prixEmprunt" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="idCat" Type="Int32" />
+          <NavigationProperty Name="Categorie" Relationship="Self.FK__Materiel__idCat__1273C1CD" FromRole="Materiel" ToRole="Categorie" />
+          <NavigationProperty Name="Emprunters" Relationship="Self.FK__Emprunter__idmat__182C9B23" FromRole="Materiel" ToRole="Emprunter" />
+        </EntityType>
+        <Association Name="FK__Materiel__idCat__1273C1CD">
+          <End Role="Categorie" Type="Self.Categorie" Multiplicity="0..1" />
+          <End Role="Materiel" Type="Self.Materiel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorie">
+              <PropertyRef Name="idCat" />
+            </Principal>
+            <Dependent Role="Materiel">
+              <PropertyRef Name="idCat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Emprunter__idClt__173876EA">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Emprunter" Type="Self.Emprunter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="idClt" />
+            </Principal>
+            <Dependent Role="Emprunter">
+              <PropertyRef Name="idClt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Degats__idEmp__1B0907CE">
+          <End Role="Emprunter" Type="Self.Emprunter" Multiplicity="0..1" />
+          <End Role="Degats" Type="Self.Degat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emprunter">
+              <PropertyRef Name="idEmp" />
+            </Principal>
+            <Dependent Role="Degats">
+              <PropertyRef Name="idEmp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Emprunter__idmat__182C9B23">
+          <End Role="Materiel" Type="Self.Materiel" Multiplicity="0..1" />
+          <End Role="Emprunter" Type="Self.Emprunter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materiel">
+              <PropertyRef Name="idMat" />
+            </Principal>
+            <Dependent Role="Emprunter">
+              <PropertyRef Name="idmat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db2018Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Categorie" />
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Degats" EntityType="Self.Degat" />
+          <EntitySet Name="Emprunters" EntityType="Self.Emprunter" />
+          <EntitySet Name="Materiels" EntityType="Self.Materiel" />
+          <AssociationSet Name="FK__Materiel__idCat__1273C1CD" Association="Self.FK__Materiel__idCat__1273C1CD">
+            <End Role="Categorie" EntitySet="Categories" />
+            <End Role="Materiel" EntitySet="Materiels" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Emprunter__idClt__173876EA" Association="Self.FK__Emprunter__idClt__173876EA">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Emprunter" EntitySet="Emprunters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Degats__idEmp__1B0907CE" Association="Self.FK__Degats__idEmp__1B0907CE">
+            <End Role="Emprunter" EntitySet="Emprunters" />
+            <End Role="Degats" EntitySet="Degats" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Emprunter__idmat__182C9B23" Association="Self.FK__Emprunter__idmat__182C9B23">
+            <End Role="Materiel" EntitySet="Materiels" />
+            <End Role="Emprunter" EntitySet="Emprunters" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db2018ModelStoreContainer" CdmEntityContainer="db2018Entities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="db2018Model.Categorie">
+              <MappingFragment StoreEntitySet="Categorie">
+                <ScalarProperty Name="idCat" ColumnName="idCat" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="db2018Model.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="idClt" ColumnName="idClt" />
+                <ScalarProperty Name="nomClient" ColumnName="nomClient" />
+                <ScalarProperty Name="prenomClient" ColumnName="prenomClient" />
+                <ScalarProperty Name="emailClient" ColumnName="emailClient" />
+                <ScalarProperty Name="mdpClient" ColumnName="mdpClient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Degats">
+            <EntityTypeMapping TypeName="db2018Model.Degat">
+              <MappingFragment StoreEntitySet="Degats">
+                <ScalarProperty Name="idD" ColumnName="idD" />
+                <ScalarProperty Name="idEmp" ColumnName="idEmp" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="coutEstime" ColumnName="coutEstime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emprunters">
+            <EntityTypeMapping TypeName="db2018Model.Emprunter">
+              <MappingFragment StoreEntitySet="Emprunter">
+                <ScalarProperty Name="idEmp" ColumnName="idEmp" />
+                <ScalarProperty Name="idClt" ColumnName="idClt" />
+                <ScalarProperty Name="idmat" ColumnName="idmat" />
+                <ScalarProperty Name="dateEmprunt" ColumnName="dateEmprunt" />
+                <ScalarProperty Name="dateRetour" ColumnName="dateRetour" />
+                <ScalarProperty Name="dureeEmprunt" ColumnName="dureeEmprunt" />
+                <ScalarProperty Name="montantTotal" ColumnName="montantTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materiels">
+            <EntityTypeMapping TypeName="db2018Model.Materiel">
+              <MappingFragment StoreEntitySet="Materiel">
+                <ScalarProperty Name="idMat" ColumnName="idMat" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+                <ScalarProperty Name="prixEmprunt" ColumnName="prixEmprunt" />
+                <ScalarProperty Name="idCat" ColumnName="idCat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

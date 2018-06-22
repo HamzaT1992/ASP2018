@@ -4,6 +4,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27428.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP2018", "ASP2018\ASP2018.csproj", "{3787F75A-6C13-4786-B7BF-FB09C996F2C9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{44AA24FF-A070-4EB2-940D-1BB2A012B38F} = {44AA24FF-A070-4EB2-940D-1BB2A012B38F}
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebService", "WebService\", "{44AA24FF-A070-4EB2-940D-1BB2A012B38F}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv3.5"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_7037"
+		Debug.AspNetCompiler.PhysicalPath = "WebService\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_7037\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_7037"
+		Release.AspNetCompiler.PhysicalPath = "WebService\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_7037\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "7037"
+		SlnRelativePath = "WebService\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +40,10 @@ Global
 		{3787F75A-6C13-4786-B7BF-FB09C996F2C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3787F75A-6C13-4786-B7BF-FB09C996F2C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3787F75A-6C13-4786-B7BF-FB09C996F2C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44AA24FF-A070-4EB2-940D-1BB2A012B38F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44AA24FF-A070-4EB2-940D-1BB2A012B38F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44AA24FF-A070-4EB2-940D-1BB2A012B38F}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{44AA24FF-A070-4EB2-940D-1BB2A012B38F}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
